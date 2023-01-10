@@ -128,26 +128,56 @@
             <div class="card" style="width: 18rem;">
                 <button><img src="./assets/spotify.jpg" class="card-img-top" alt="..."></button>
             </div>
-    
+
             <div class="card" style="width: 18rem;">
                 <button><img src="./assets/dezzer.jpg" class="card-img-top" alt="..."></button>
             </div>
-    
+
             <div class="card" style="width: 18rem;">
                 <button><img src="./assets/youtube.png" class="card-img-top" alt="..."></button>
             </div>
-    
+
             <div class="card" style="width: 18rem;">
                 <button><img src="./assets/cloudflare.png" class="card-img-top" alt="..."></button>
             </div>
         </div>
-        
+
     </section>
 
     <footer class="bg-dark">Todos los derechos reservados. ©</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+    <script language="javascript">
+        function deactivateAll() {
+            var buttons = document.getElementsByTagName('button');
+            for (button in buttons)
+                button.classList.remove("on")
+        }
+
+        function activate(sender) {
+            if (sender == null)
+                return;
+            sender.classList.add("on");
+        }
+
+        function handle(sender, action, value) {
+            // deactivateAll();
+            // activate(sender);
+            submit(action, value);
+        }
+
+        function submit(action, value) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", window.location.href, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                'action': action,
+                'value': value,
+            }));
+        }
+    </script>
 </body>
 
 </html>
