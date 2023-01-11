@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-dark bg-dark  navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Centro Multimedia</a>
+                <button id="closeWindow" class="btn navbar-brand">Centro Multimedia</button>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +24,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="javascript:window.close();" class="nav-link" onclick="window.close()">VOLVER</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
@@ -84,39 +87,48 @@
 
         <div class="grid">
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'netflix')"><img src="./assets/Netflix.png" class="card-img-top" alt="..."></button>
+                <a href="https://www.netflix.com/mx/login" target="_blank"><img src="./assets/Netflix.png"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'hbo')"><img src="./assets/hbo.png" class="card-img-top" alt="..."></button>
+                <a href="https://play.hbomax.com/signIn" target="_blank"><img src="./assets/hbo.png"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'disney')"><img src="./assets/disney.jpg" class="card-img-top" alt="..."></button>
+                <a href="https://www.disneyplus.com/login" target="_blank"><img src="./assets/disney.jpg"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'star')"><img src="./assets/star.png" class="card-img-top" alt="..."></button>
+                <a href="https://www.starplus.com/login" target="_blank"><img src="./assets/star.png"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'prime')"><img src="./assets/prime.png" class="card-img-top" alt="..."></button>
+                <a href="https://www.primevideo.com/" target="_blank"><img src="./assets/prime.png" class="card-img-top"
+                        alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'cruchyroll')"><img src="./assets/cruchyroll.jpg" class="card-img-top" alt="..."></button>
+                <a href="https://www.crunchyroll.com/es/login?source=store&next=/" target="_blank"><img
+                        src="./assets/cruchyroll.jpg" class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'vix')"><img src="./assets/vix.png" class="card-img-top" alt="..."></button>
+                <a href="https://vix.com/es/iniciar-sesion" target="_blank"><img src="./assets/vix.png"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'blim')"><img src="./assets/blim.jpg" class="card-img-top" alt="..."></button>
+                <a href="https://www.blim.com/cuenta/ingresar" target="_blank"><img src="./assets/blim.jpg"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'paramount')"><img src="./assets/paramount.png" class="card-img-top" alt="..."></button>
+                <a href="https://www.paramountplus.com/mx/signin/?redirectUrl=%2Faccount%2Fsignin%2F"
+                    target="_blank"><img src="./assets/paramount.png" class="card-img-top" alt="..."></a>
             </div>
 
         </div>
@@ -126,19 +138,23 @@
         <h1>MÚSICA</h1>
         <div class="grid">
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'spotify')"><img src="./assets/spotify.jpg" class="card-img-top" alt="..."></button>
+                <a href="https://accounts.spotify.com/es/login/" target="_blank"><img src="./assets/spotify.jpg"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'deezer')"><img src="./assets/dezzer.jpg" class="card-img-top" alt="..."></button>
+                <a href="https://www.deezer.com/mx/login" target="_blank"><img src="./assets/dezzer.jpg"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'youtube')"><img src="./assets/youtube.png" class="card-img-top" alt="..."></button>
+                <a href="https://music.youtube.com/" target="_blank"><img src="./assets/youtube.png"
+                        class="card-img-top" alt="..."></a>
             </div>
 
             <div class="card" style="width: 18rem;">
-                <button onclick="handle(this,'app', 'cloudflare')"><img src="./assets/cloudflare.png" class="card-img-top" alt="..."></button>
+                <a href="https://dash.cloudflare.com/login" target="_blank"><img src="./assets/cloudflare.png"
+                        class="card-img-top" alt="..."></a>
             </div>
         </div>
 
@@ -149,34 +165,10 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-    <script language="javascript">
-        function deactivateAll() {
-            var buttons = document.getElementsByTagName('button');
-            for (button in buttons)
-                button.classList.remove("on")
-        }
+    <script>
+        // write a simple wrapper around window.open that allows legal close
+        
 
-        function activate(sender) {
-            if (sender == null)
-                return;
-            sender.classList.add("on");
-        }
-
-        function handle(sender, action, value) {
-            // deactivateAll();
-            // activate(sender);
-            submit(action, value);
-        }
-
-        function submit(action, value) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", window.location.href, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify({
-                'action': action,
-                'value': value,
-            }));
-        }
     </script>
 </body>
 
