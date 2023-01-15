@@ -244,6 +244,7 @@ def rep_music(root,archivos,dir1,nombre_usb):
 	list_player.set_media_list(music_list)
 	list_player.play() 
 	
+	#Creamos los botones para nuestro reproductor 
 	boton_anterior=Button(vent_music,text="Anterior",command=lambda:ant(list_player))
 	tam_pant(vent_music,boton_anterior,20,70)
 	
@@ -261,7 +262,7 @@ def rep_music(root,archivos,dir1,nombre_usb):
 	
 	time.sleep(0.5)
 
-#Funciones para manipular la cancion en reproduccion 
+#Funciones para manipular la cancion actual en reproduccion 
 def sig (list_player):
 	list_player.next()
 	
@@ -327,30 +328,35 @@ def rep_vid(archivos,dir1):
 	
 #Creamos una ventana principal 
 def pant_prin(root):
+	#Destruimos la ventana anterior
 	root.destroy()
 	inicio_men = Tk()
 	inicio_men.title("Menu")
-	inicio_men.attributes('-fullscreen', True) #Maximiza la pantalla
+	#Ponemos la ventana en pantalla completa
+	inicio_men.attributes('-fullscreen', True) 
 	inicio_men.config(bg = "white")
+	#Agregamos una imagen de fondo 
 	imagenL = ImageTk.PhotoImage(Image.open('Pro_img/fondo1.jpg'))
 	lblImagen = Label(inicio_men, image = imagenL).place(x = 0, y = 0, relwidth = 1, relheight = 1)
-	#Crea etiqueta y se asigna la ventana y el texto a mostrar
+	#Crea un nuevo titutlo para mostrar
 	titulo1=Label(inicio_men,text="Bienvenido")
 	tam_pant(inicio_men,titulo1,49,1)
 	
 
-	#Crea botón que llama al menu principal y se envia la ventana actual.
+	#Creamos los titulos para los botones principales del menu 
 	
 	titulo2=Label(inicio_men,text="Ver medios usb disponibles:")
 	tam_pant(inicio_men,titulo2,20,20)
 	titulo3=Label(inicio_men,text="Abrir centro de streaming: ")
 	tam_pant(inicio_men,titulo3,50,20)
 	
-		
+	#Creamos los botones para acceder a las diferentes funcionalidades 
+	#Boton para ver usb disponibles
 	img_usb=PhotoImage(file='Pro_img/usb.png')
 	boton_usb=Button(inicio_men,image=img_usb,command=lambda:lectura_usb(inicio_men))
 	tam_pant(inicio_men,boton_usb,20,25)
 	
+	#Boton para ver pantalla principal de servcio de streaming
 	img_str=PhotoImage(file='Pro_img/streaming_boton.png')
 	boton_streming=Button(inicio_men,image=img_str,command=lambda:abrir_principal())
 	tam_pant(inicio_men,boton_streming,50,25)
@@ -360,29 +366,33 @@ def pant_prin(root):
 
 
 if __name__ == "__main__":
-		#Inicializa ventana de bienvenida
+	#Creamos una nueva ventana con tk 
 	inicio = Tk()
 	inicio.title("Menu")
-	inicio.attributes('-fullscreen', True) #Maximiza la pantalla
+	#Entramos en pantalla completa 
+	inicio.attributes('-fullscreen', True) 
 	inicio.config(bg = "white")
+	#Agregamos un imagen de fondo 
 	imagenL = ImageTk.PhotoImage(Image.open('Pro_img/fondo1.jpg'))
 	lblImagen = Label(inicio, image = imagenL).place(x = 0, y = 0, relwidth = 1, relheight = 1)
-	#Crea etiqueta y se asigna la ventana y el texto a mostrar
+	#Crea un titulo nuevo 
 	titulo=Label(inicio,text="Bienvenido")
 	tam_pant(inicio,titulo,49,1)
 	
 
-	#Crea botón que llama al menu principal y se envia la ventana actual.
+	#Creamos los titulos para los botones principales del men
 	titulo2=Label(inicio,text="Ver medios usb disponibles:")
 	tam_pant(inicio,titulo2,20,20)
 	titulo3=Label(inicio,text="Abrir centro de streaming: ")
 	tam_pant(inicio,titulo3,50,20)
 	
-	
+	#Creamos los botones para acceder a las diferentes funcionalidades 
+	#Boton para ver usb disponibles
 	img_usb=PhotoImage(file='Pro_img/usb.png')
 	boton_usb=Button(inicio,image=img_usb,command=lambda:lectura_usb(inicio))
 	tam_pant(inicio,boton_usb,20,25)
 	
+	#Boton para ver pantalla principal de servcio de streaming
 	img_str=PhotoImage(file='Pro_img/streaming_boton.png')
 	boton_streming=Button(inicio,image=img_str,command=lambda:abrir_principal())
 	tam_pant(inicio,boton_streming,50,25)
