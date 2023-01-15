@@ -1,11 +1,16 @@
-#-*- coding: utf-8 -*-
-
-#********** Proyecto final de Fundamentos de Sistemas Embebidos ************
-#************* CENTRO MULTIMEDIA ***************
-#	Autores:
-#	
-#	Fecha: 15/05/2022
+#Proyecto final de Fundamentos de Sistemas Embebidos 
+#Candia Marcial Uriel
+#Martin Desceano Jose Antonio	
+#Reyes Luna Luis Ernesto 	
+#
 #	Licencia: MIT License
+#Copyright <2023> <Equipo9>
+#
+#Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from tkinter import *
 from tkinter import ttk
@@ -29,44 +34,50 @@ def tam_pant(root,boton,x,y):
 
 
 
-#Funciones para abrir los diferentes servicios de streaming con el navegador chromium.
+#Funcion para abrir la pagina principal de streaming
 def abrir_principal():
+	#abrimos el navegador con el archivo html 
 	navegador=webbrowser.get("chromium-browser")
 	navegador.open("file:///home/uriel/Documentos/Proyecto2/centro-multimedia-main/user_interface.html",new=2, autoraise=True)
 	time.sleep(1)
+	#seleccionamos la ventana chromium
 	cmd1="wmctrl -a Chromium"
 	os.system(cmd1)
 	time.sleep(0.1)
+	#enviamos la entrada por teclado de la tecla f11 para entrar en pantalla completa dentro de chromium 
 	cmd2="xdotool key F11"
 	os.system(cmd2)
 	
 
-
-def lectura_usb(root):
-	#Se elimina la pantalla 
+#Funcion para leer USB 
+def lectura_usb(root): 
 	root.destroy()
-	#Inicializa la ventana 
+	#Inicializamos una nueva ventana tkinter 
 	vent_usb = Tk()
 	vent_usb.title("Dispositivos USB disponibles: ")
-	vent_usb.attributes('-fullscreen', True) #Maximiza la pantalla
+	#Ponemos la ventana en patalla completa 
+	vent_usb.attributes('-fullscreen', True) 
 	vent_usb.config(bg = "white")
+	#Agregamos una imagen de fondo para la ventana 
 	imagenL = ImageTk.PhotoImage(Image.open('Pro_img/fondo1.jpg'))
 	lblImagen = Label(vent_usb, image = imagenL).pack()
+	#Agregamos el texto 
 	titulo=Label(vent_usb,text="USB disponibles:")
+	#Enviamos la ventana y el titulo para colocarlos dentro de la ventana 
 	tam_pant(vent_usb,titulo,10,10)
 	
 
-	#Se obtiene el nombre del usuario
+	#Con la funcion geuser obtenemos el usuario 
 	user=getuser()
-	#Se especifica el directorio que contiene las usb
+	#Asignamos a las variable dir_user la direccion de la mem
 	dir_user="/media/"+user+"/"
 	
-	#Creamos una lista con todos los archivos dentro de la usb
+	#Obtenemos el nombre de archivos dentro de la usb 
 	Num_usbs = os.listdir(dir_user)
-	#Se cuentan las usbs disponibles
+	#Contamos la usb disponibles 
 	total_usbs = len(Num_usbs)
 	botonUsb = []
-
+	#Si existe una usb se crea un boton para mostrar el contenido de la usb 
 	if total_usbs > 0:
 		if total_usbs >= 1:
 			boton1=Button(vent_usb,text=Num_usbs[0],bg="#212529",fg="white", command=lambda:cont_usb(vent_usb,Num_usbs[0]))
@@ -86,19 +97,19 @@ def lectura_usb(root):
 	else:
 		titulo=Label(vent_usb,text="No existen dispositivos usb disponibles").place(x=50,y=150)
 
+	#Creamos un boton para regresar al menu anterior 
 	boton_atras=Button(vent_usb,text="Atras",command=lambda:pant_prin(vent_usb))
 	tam_pant(vent_usb,boton_atras,90,90)
 	
-	#Se detectan nuevos dispositivos
+	#Con la funcion try estamos bucando nuevas usb o en su caso la desconeccion de alguna usb 
 	try:
 		while True:
 			detecta_usb = os.listdir(dir_user)
-			#NO hubo nuevos dispositivos
+			#Si no existen nuevos usb
 			if total_usbs == len(detecta_usb):
 				vent_usb.update_idletasks()
 				vent_usb.update()
 			else:
-				#Se actualiza la pantalla
 				lectura_usb(vent_usb)
 	except:
 		print("Ocurrio un error inesperado")
@@ -106,14 +117,18 @@ def lectura_usb(root):
 	
 	vent_usb.mainloop()
 
-
+#Funcion para mostrar el contenido de una usb
 def cont_usb(root,nombre_usb):
+	#Se elimina la ventana anterior
 	root.destroy()
+	#Creamos una nueva ventana 
 	vent_infousb = Tk()
 	titulo = "Informacion de USB " + nombre_usb
 	vent_infousb.title(titulo)
-	vent_infousb.attributes('-fullscreen', True) #Maximiza la pantalla
+	#Ponemos la ventana en patalla completa
+	vent_infousb.attributes('-fullscreen', True) 
 	vent_infousb.config(bg = "white")
+	#Agregamos una imagen de fondo para la ventana 
 	imagenL = ImageTk.PhotoImage(Image.open('Pro_img/fondo1.jpg'))
 	lblImagen = Label(vent_infousb, image = imagenL).place(x = 0, y = 0, relwidth = 1, relheight = 1)
 	titulo=Label(vent_infousb,text="Contenido de la USB:")
@@ -121,11 +136,11 @@ def cont_usb(root,nombre_usb):
 	#Se obtiene el directorio de la usb
 	user=getuser()
 	dir1="/media/"+user+"/" + nombre_usb+"/"
-	#Obtiene los archivos de la usb
+	#Obtenemos el directorio de la usb 
 	directorio = pathlib.Path(dir1)
 
 
-	#Se crea una lista con todos los archivos 
+	#Obtenemos el nombre de archivos dentro de la usb  
 	archivos=[]
 	for fichero in directorio.iterdir():
 		nom_file=str(fichero)
@@ -139,16 +154,17 @@ def cont_usb(root,nombre_usb):
 	
 	pos_y=15
 	
-	#Muestra en pantalla los títulos de los archivos
+	#Mostramos en la ventana todos los nombres de los archivos dentro de la usb 
 	for archi in archivos:
 			titulo=Label(vent_infousb,text=archi)
 			tam_pant(vent_infousb,titulo,10,pos_y)
 			pos_y=pos_y+2
-	
+	#Banderas para conocer si existe contenido de cierto tipo dentro de la usb
 	band_music=False
 	band_img=False
 	band_vid=False
 	
+	#Obtenemos la extension de los archivos en la usb 
 	for extens in archivos_ext:
 		if extens == ".mp3" or extens == ".wav" :
 			band_music=True
@@ -158,7 +174,8 @@ def cont_usb(root,nombre_usb):
 			band_vid=True
 
 	pos_y=610		
-			
+	
+	#Si encontramos contenido creamos un boton a la ventana para poder visualizarlo 
 	if band_music==True and band_img==False and band_vid==False:
 		
 		boton_music=Button(vent_infousb,text="Reproducir musica",command=lambda:rep_music(vent_infousb,archivos,dir1,nombre_usb))
@@ -185,41 +202,45 @@ def cont_usb(root,nombre_usb):
 		tam_pant(vent_infousb,boton_vid,80,75)
 	
 	
-	#Boton para regresar a la pantalla anterior
+	#Boton para regresar a el menu anterior 
 	boton_atras=Button(vent_infousb,text="Atras",command=lambda:lectura_usb(vent_infousb))
 	tam_pant(vent_infousb,boton_atras,80,90)
 
 	vent_infousb.mainloop()
 	
 	
-	
+#Funcion para reproducir musica
 def rep_music(root,archivos,dir1,nombre_usb):
+	#Elima la ventana anterior 
 	root.destroy()
 	vent_music = Tk()
 	vent_music.title("Musica")
-	vent_music.attributes('-fullscreen', True) #Maximiza la pantalla
+	vent_music.attributes('-fullscreen', True) 
 	imagenL = ImageTk.PhotoImage(Image.open('Pro_img/fondo1.jpg'))
 	lblImagen = Label(vent_music, image = imagenL).pack()
 	titulo=Label(vent_music,text="Reproductor de musica")
 	tam_pant(vent_music,titulo,45,1)
 
 
-
+	#Crea una copia de la lista con los nombres de los archivos 
 	archivos=archivos[:]
+	#Crea una instancia vlc para una nueva lista de reproduccion
 	list_player=vlc.MediaListPlayer()
 	music=vlc.Instance()
 	music_list=music.media_list_new()
 	music_dir=[]
+	#Obtenemos la extension de los arhcivos y separamos aquellas que sean musica 
 	for extension in archivos:
 		nomb,ext=os.path.splitext(extension)
 		if ext == ".mp3" or ext == ".wav" :
 			music_dir.append(extension)
 	
-	
+	#Agregamos a la lista de reproduccion todas las canciones que encontremos 
 	for arch_music in music_dir: 
 		media=music.media_new(dir1+arch_music)
 		music_list.add_media(media)
 	
+	#Reproducimos la lista de reproduccion 
 	list_player.set_media_list(music_list)
 	list_player.play() 
 	
@@ -239,7 +260,8 @@ def rep_music(root,archivos,dir1,nombre_usb):
 	tam_pant(vent_music,boton_cerrar,85,20)
 	
 	time.sleep(0.5)
-	
+
+#Funciones para manipular la cancion en reproduccion 
 def sig (list_player):
 	list_player.next()
 	
@@ -256,17 +278,20 @@ def cerrar(root,list_player,nombre_usb):
 	
 	
 
-
+#Funcion para reproducir imagenes 
 def rep_img(archivos,dir1):
+	#Crea una copia de la lista con los nombres de los archivos 
 	archivos=archivos[:]
+	#Creamos una nueva instancia vlc 
 	img=vlc.Instance()
 	img_dir=[]
+	#Obtenemos la extension de los archivos y separamos todas las imagenes 
 	for extension in archivos:
 		nomb,ext=os.path.splitext(extension)
 		if ext == ".bmp" or ext == ".gif" or ext == ".jpg" or ext == ".png" or ext == ".jpeg":
 			img_dir.append(extension)
 		
-		
+	#Creamos un ciclo for para mostrar todas las imagenes en tipo presentacion con 5 segundos par cada imagen 	
 	for nu_img in img_dir:
 		player=img.media_player_new()
 		media=img.media_new(dir1+nu_img)
@@ -275,17 +300,21 @@ def rep_img(archivos,dir1):
 		player.play()
 		time.sleep(5)
 		player.stop()
-		
+
+#Funcion para reproducir video 
 def rep_vid(archivos,dir1):
+	#Crea una copia de la lista con los nombres de los archivos 
 	archivos=archivos[:]
+	#Creamos una nueva instancia vlc
 	vid=vlc.Instance()
 	vid_dir=[]
+	#Obtenemos la extension de los archivos y separamos todas los videos
 	for extension in archivos:
 		nomb,ext=os.path.splitext(extension)
 		if ext == ".mp4" or ext == ".mov" or ext == ".mkv" or ext == ".wmv" or ext == ".flv":
 			vid_dir.append(extension)
 	
-	
+	#Creamos un ciclo for para mostrar todas los videos 
 	for arch_vid in vid_dir: 
 		player=vid.media_player_new()
 		media=vid.media_new(dir1+arch_vid)
@@ -296,7 +325,7 @@ def rep_vid(archivos,dir1):
 	
 	
 	
-
+#Creamos una ventana principal 
 def pant_prin(root):
 	root.destroy()
 	inicio_men = Tk()
