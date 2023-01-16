@@ -2,9 +2,6 @@
 
 <img width="1438" alt="" src="https://github.com/antoniomd-fi/centro-multimedia/blob/main/readmeAssets/step5.jpeg">
 
-The best recipe browser 
-
-This project is part of phase 2 of the Santander and BEDU scholarship.
 
 
 ## Table of Contents
